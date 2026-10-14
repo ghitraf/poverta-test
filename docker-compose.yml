@@ -1,0 +1,25 @@
+services:
+  web:
+    build: .
+    container_name: fastapi_app
+    restart: unless-stopped
+    # Port 8000 tidak di-expose ke host, hanya bisa diakses oleh Nginx di network yang sama
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
+    deploy:
+      resources:
+        limits:
+          memory: 64M
