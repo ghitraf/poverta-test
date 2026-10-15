@@ -11,7 +11,7 @@ app = FastAPI(title="Poverta App", version="1.0.0")
 @app.get("/")
 def read_root():
     logger.info("User mengakses halaman utama")
-    return {"message": "Halo! Ini adalah Poverta App dengan FastAPI + Nginx."}
+    return {"message": "Halo! Ini adalah Poverta App V2 - CI/CD BERHASIL."}
 
 @app.get("/health")
 def health_check():
